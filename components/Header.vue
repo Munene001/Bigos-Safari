@@ -1,5 +1,5 @@
 <template>
-    <div class="h-[87px] flex-row md:flex hidden w-full bg-green-900 font-[edgaramond]">
+    <div class="h-[87px] flex-row md:flex hidden w-full bg-green-900 font-[edgaramond] ">
       <div class="flex w-[18%] items-center justify-center">Hello</div>
       <div class="w-[82%] flex items-center justify-around bg-transparent">
         <NuxtLink
@@ -67,6 +67,7 @@
         >
           ITENARIES
         </NuxtLink>
+        
         <NuxtLink
           class="text-[14px] leading-[14px] font-semibold no-underline  text-white"
           to="/Accomodations"
@@ -80,7 +81,7 @@
           ABOUT US
         </NuxtLink>
         <NuxtLink
-          class="text-[14px] leading-[14px] font-semibold no-underline p-[10px] bg-amber-300 text-black  flex items-center"
+          class="text-[14px] leading-[14px] font-semibold no-underline p-[10px] bg-[#FFD700] text-black  flex items-center"
           to="/contact"
         >
            MAKE INQUIRIES <Icon name = "icon-park:hand-right" style= "color:black; margin-left: 10px; height: 24px; width: 24px;" />
@@ -97,7 +98,7 @@
     >
       <div>logo</div>
       <button @click="togglePopup">
-        <Icon name="material-symbols:menu" style="font-size: 28px; color:white" />
+        <Icon name="material-symbols:menu" style="font-size: 28px; color:#FFD700" />
       </button>
     </div>
     <div
@@ -184,7 +185,7 @@
           CONTACT
     </NuxtLink>
     </div>
-      <button @click="togglePopup" class="absolute top-[60px] right-[30px]"><Icon name="zondicons:close" style="font-size: 28px;"/></button>
+      <button @click="togglePopup" class="absolute top-[60px] right-[30px]"><Icon name="zondicons:close" style="font-size: 28px; color:#FFD700"/></button>
     </div>
   </template>
   
