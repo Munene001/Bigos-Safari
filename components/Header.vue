@@ -98,7 +98,7 @@
     >
       <div>logo</div>
       <button @click="togglePopup">
-        <Icon name="material-symbols:menu" style="font-size: 28px; color:#FFD700" />
+        <Icon name="material-symbols:menu" style="font-size: 28px; color:white" />
       </button>
     </div>
     <div
