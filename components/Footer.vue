@@ -24,6 +24,7 @@
             <div>Terms and Conditions</div>
             <div>Privacy policy</div>
             <div>Top Accomodations</div>
+            <router-link to = "/Dashboard/Accommodations/New">Dashboard</router-link>
             </div>
             
         </div>
@@ -77,6 +78,7 @@
             <div>Terms and Conditions</div>
             <div>Privacy policy</div>
             <div>Top Accomodations</div>
+            <router-link to = "/Dashboard/Accommodations/New">Dashboard</router-link>
             </div>
             
         </div>

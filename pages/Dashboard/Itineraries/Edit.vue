@@ -1,0 +1,3 @@
+<template>
+    <Dashhead/>
+</template>

@@ -6,12 +6,12 @@
   >
     <div class="flex flex-row">
       <Icon name="mage:home" /><Icon name="lsicon:right-filled" /><span
-        class="align-middle font-light"
+        class="align-middle"
         >About us</span
       >
     </div>
     <div class="flex flex-col gap-[10px]">
-      <div class="font-[Sans-serif] text-[40px] leading-[60px] font-bold">
+      <div class="font-[Sans-serif] text-[40px] leading-[60px] font-bold ">
         ABOUT US
       </div>
       <div class="text-[16px] leading-[18px] font-medium">
