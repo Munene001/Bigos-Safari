@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-[30%] flex px-[5px] py-[10px] h-[100vh] flex-col gap-[20px] border-r md:w-[15%] relative border-gray-300 bg-white"
+    class="w-[30%] flex px-[5px] py-[10px]  flex-col gap-[20px] border-r md:w-[15%] relative border-gray-300 bg-white"
   >
   
     <div>
