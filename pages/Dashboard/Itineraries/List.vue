@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-row">
     <Dashhead />
-    <div class="p-[10px]">
+    <div class="p-[10px] flex-1">
       <div class="text-orange-900 font-bold">ITINERARIES LISTINGS</div>
       <div v-if="loading">Loading....</div>
       <div v-else-if="error" class="text-red-500">{{ error }}</div>
@@ -145,7 +145,7 @@ const fetchItineraries = async () => {
   }
 };
 const editItinerary = (itinerary_id: number) => {
-  router.push(`editproperty/${itinerary_id}`);
+  router.push(`Edit/${itinerary_id}`);
 };
 const deleteItinerary = async (itinerary_id: number) => {
   if (!confirm("Are you sure you want to delete this Itinerary?")) return;

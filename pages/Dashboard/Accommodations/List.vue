@@ -1,12 +1,12 @@
 <template>
   <div class="flex flex-row">
     <Dashhead />
-    <div class="p-[10px]">
+    <div class="p-[10px] flex-1">
       <div class="text-orange-900 font-bold"> ACCOMMODATION LISTINGS</div>
       <div v-if="loading">Loading....</div>
       <div v-else-if="error" class="text-red-500">{{ error }}</div>
       <div v-else-if="accommodations.length === 0">No accommodations found</div>
-      <div v-else class="flex flex-col gap-[15px]">
+      <div v-else class="flex flex-col gap-[15px] ">
         <div
           v-if="!loading && !error"
           class="text-[35px] leading-[45px] font-bold text-green-900"
@@ -142,7 +142,7 @@ const fetchAccommodations = async () => {
   }
 };
 const editAccommodation = (accommodation_id: number) => {
-  router.push(`editproperty/${accommodation_id}`);
+  router.push(`Edit/${accommodation_id}`);
 };
 const deleteAccommodation = async (accommodation_id: number) => {
   if (!confirm("Are you suere you want to delete this Accommodation?")) return;

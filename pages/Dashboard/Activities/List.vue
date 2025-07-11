@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-row">
     <Dashhead />
-    <div class="p-[10px]">
+    <div class="p-[10px] md:flex-1">
       <div class="text-orange-900 font-bold">ACTIVITIES LISTINGS</div>
       <div v-if="loading">Loading....</div>
       <div v-else-if="error" class="text-red-500">{{ error }}</div>
@@ -134,7 +134,7 @@ const fetchActivities = async () => {
   }
 };
 const editActivity = (activity_id: number) => {
-  router.push(`editproperty/${activity_id}`);
+  router.push(`Edit/${activity_id}`);
 };
 const deleteActivity = async (activity_id: number) => {
   if (!confirm("Are you sure you want to delete this Activity?")) return;
