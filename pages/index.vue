@@ -1,3 +1,8 @@
+<script setup lang="ts">
+import Caroucountry from '~/components/Caroucountry.vue';
+
+</script>
+
 <template>
     <Anime/>
     <div
@@ -35,4 +40,5 @@
     
     </div>
   </div>
+  <Caroucountry/>
 </template>
