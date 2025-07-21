@@ -99,7 +99,7 @@
         to="/Itenaries"
 
       >
-        ITENARIES
+        ITINERARIES
       </NuxtLink>
 
       <NuxtLink

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-[url('/public/grassland2.jpg')] relative bg-cover md:bg-right px-[10px] py-[20px] md:items-center md:h-[450px] md:flex md:flex-row"
+    class="bg-[url('/public/grassland2.jpg')] relative bg-cover md:bg-right px-[10px] py-[20px] items-center md:h-[450px] md:flex md:flex-row"
   >
   <div class="absolute inset-0 bg-orange-900 bg-opacity-30 overflow-hidden"></div>
     <div

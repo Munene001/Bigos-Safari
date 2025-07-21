@@ -8,7 +8,7 @@ const carouselConfig = {
   wrapAround: true,
   gap: 20,
  
-  transition:"500"
+ 
 }
 const slides = [
   {
@@ -74,7 +74,7 @@ const slides = [
 ]; </script>
 
 <template>
-  <div class="md:bg-[url('bg.webp')] bg-bottom bg-cover flex md:flex-row flex-col md:h-[600px] md:bg-opacity-10 bg-gray-100 py-[20px] gap-[20px] md:py-[1px] md:gap-[1px] relative">
+  <div class="md:bg-[url('bg.webp')] bg-bottom bg-cover flex md:flex-row flex-col md:h-[600px] md:bg-opacity-10 bg-gray-200 py-[20px] gap-[20px] md:py-[1px] md:gap-[1px] relative">
     <div class="hidden md:w-[35%] md:flex justify-center px-[10px] flex-col gap-[20px] font-[Sans-serif] text-white">
       <div class="font-bold text-green-500"><div class="text-[27px] leading-[32px]  ">Explore </div> <div class="text-[37px] leading-[45px]">Our Must-See Places</div></div>
       <div class="font-medium text-[22px] leading-[33px]" >Uncover essential insights on each location, from the best time to visit to how to make the most of your journey.</div>
@@ -85,12 +85,12 @@ const slides = [
     </div>
    
     
-  <Carousel v-bind="carouselConfig" class=" flex md:w-[65%] overflow-hidden ">
+  <Carousel v-bind="carouselConfig" class=" flex md:w-[65%] overflow-hidden " id="1">
     <Slide v-for= "(slide, index) in slides " :key="index">
       
       <div class="relative h-[450px] w-[330px] overflow-hidden">
       <img :src="slide.image" :alt="'Slide' + (index + 1)" class="h-full w-full object-cover" />
-      <div class="absolute bottom-6 left-0 right-0   text-white md:bg-black md:bg-opacity-15 px-[20px]">
+      <div class="absolute bottom-6 left-0 right-0   text-white bg-black bg-opacity-20 px-[20px]">
         <h3 class="text-[28px] font-bold font-[Sans-serif]">{{ slide.title }}</h3>
         <p class="text-sm font-[Sans-serif] text-green-100">{{ slide.description }}</p>
       </div>
@@ -115,7 +115,7 @@ const slides = [
 @media(min-width:768px){
 .carousel {
   --vc-pgn-background-color: white;
-  --vc-pgn-active-color: red;
+  --vc-pgn-active-color: darkgoldenrod;
   --vc-pgn-border-radius: 5px;
   --vc-pgn-height: 7px;
   --vc-pgn-width: 7px;
@@ -142,7 +142,7 @@ const slides = [
   
 
 .carousel {
-  --vc-pgn-display:none;
+  --vc-pgn-display:hidden;
   --vc-pgn-background-color: white;
   --vc-pgn-active-color: rgb(12, 228, 12);
   --vc-pgn-border-radius: 5px;
@@ -154,17 +154,17 @@ const slides = [
 }
 
 }
-.carousel__slide--active img {
+.carousel__slide--active div {
   opacity: 1;
   transform: scale(1) rotateY(0) translateX(0);
 }
 
-.carousel__slide--prev img {
+.carousel__slide--prev div {
   opacity: 0.8;
   transform: scale(0.9) ;
 }
 
-.carousel__slide--next img {
+.carousel__slide--next div {
   opacity: 0.8;
   transform: scale(0.9) ;
 }

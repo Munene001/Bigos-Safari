@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Activiter from '~/components/Activiter.vue';
 import Caroucountry from '~/components/Caroucountry.vue';
 
 </script>
@@ -40,5 +41,8 @@ import Caroucountry from '~/components/Caroucountry.vue';
     
     </div>
   </div>
+  <Iten/>
   <Caroucountry/>
+  <Activiter/>
+  
 </template>
