@@ -1,5 +1,5 @@
 <template>
-  <div v-if="itinerary" class="md:flex h-[120vh] hidden bg-gray-200 py-[50px]">
+  <div v-if="itinerary" class="md:flex h-[120vh] hidden bg-gray-200 py-[50px] rounded-xl">
     <!-- LEFT SIDEBAR - SUB-ITINERARIES -->
     <div
       class="w-80 bg-white border-r border-gray-300 p-4 overflow-y-auto sticky top-0 h-[screen]"
@@ -42,7 +42,7 @@
     <div class="flex-1 overflow-y-auto overflow-x-hidden h-[screen]">
       <template v-if="activeSubItinerary ">
         <div class="max-w-3xl mx-auto">
-          <h3 class="text-2xl font-bold mb-6 text-green-900">
+          <h3 class="text-2xl font-bold mb-6 text-[#4A3620]">
             {{ itinerary.main_destination }} Itinerary
           </h3>
           <div v-if="activeSubItinerary.special_notes" class="mb-4 p-3 bg-green-50 rounded-lg">
@@ -67,7 +67,7 @@
               >
                 <div class="flex gap-[30px] items-center">
                   <div
-                    class="text-green-900 flex-shrink-0 font-bold text-[25px]"
+                    class="text-[#4A3620] flex-shrink-0 font-bold text-[25px]"
                   >
                     DAY {{ day.day_number }}:
                   </div>
@@ -170,8 +170,8 @@
           <h3 class="text-lg font-bold mb-3 text-green-900">
             {{ itinerary.main_destination }} Itinerary
           </h3>
-          <div v-if="activeSubItinerary.special_notes" class="mb-4 p-3 bg-green-50 rounded-lg">
-            <p class="text-green-800 italic">{{ activeSubItinerary.special_notes }}</p>
+          <div v-if="activeSubItinerary?.special_notes" class="mb-4 p-3 bg-green-50 rounded-lg">
+            <p class="text-green-800 italic">{{ activeSubItinerary?.special_notes }}</p>
           </div>
 
           <div v-if="sub.day_plans?.length">
@@ -196,7 +196,7 @@
                     <img
                       :src="
                         'http://127.0.0.1:8000' +
-                        getDayImage(day.day_number).image_url
+                        getDayImage(day.day_number)?.image_url
                       "
                       class="w-full h-40 object-cover rounded-lg"
                     />

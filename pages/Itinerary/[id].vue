@@ -21,7 +21,7 @@
     <button class=" text-[16px] leading-[24px]   bg-yellow-600  w-[166px] h-[40px]  ">See Itinerary</button>
     </div>
     </div>
-    <div class="bg-gray-200 flex flex-col md:items-center py-[20px] gap-[10px] md:grid md:grid-cols-3 md:h-[74px] px-[10px]">
+    <div class="bg-gray-200 flex flex-col md:items-center py-[20px] gap-[10px] md:grid md:grid-cols-3 md:h-[74px] px-[10px] rounded-b-xl">
       <div class="flex items-center gap-[5px]"><span><Icon name="subway:calendar-1" style="color: darkolivegreen;"/></span> <span>{{ itinerary.best_season }}</span></div>
       <div class="flex items-center gap-[5px]"><span><Icon name="ic:round-place" style="color: darkolivegreen;"/></span>{{ itinerary.main_destination }}</div>
       <div class="flex items-center gap-[5px]"><span><Icon name="material-symbols:clear-night" style="color: darkolivegreen;"/></span>{{ itinerary.sub_itineraries[0].duration_nights }} nights</div>

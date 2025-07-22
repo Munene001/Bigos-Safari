@@ -40,7 +40,7 @@
   </div>
   <div class="px-[10px] py-[50px] gap-[50px] flex flex-col">
     <div
-      class="text-center text-[35px] font-bold leading-[26px] text-green-900"
+      class="text-center text-[35px] font-bold leading-[26px] text-[#4A3620]"
     >
       WHAT WE OFFER
     </div>

@@ -9,7 +9,7 @@ import Caroucountry from '~/components/Caroucountry.vue';
     <div
     class="   w-[full] flex flex-col items-center py-[60px] gap-[30px] md:px-[20px] md:py-[70px] md:gap-[40px]"
   >
-    <div class="text-[36px] font-bold leading-[40px] text-green-900 font-[Bodoni]">WHY CHOOSE US</div>
+    <div class="text-[36px] font-bold leading-[40px] text-[#4A3620] font-[Bodoni]">WHY CHOOSE US</div>
     <div
       class="grid grid-flow-row gap-[30px] place-items-center md:grid-cols-3"
     >
@@ -42,7 +42,8 @@ import Caroucountry from '~/components/Caroucountry.vue';
     </div>
   </div>
   <Iten/>
-  <Caroucountry/>
   <Activiter/>
+  <Caroucountry/>
+ 
   
 </template>

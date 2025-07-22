@@ -125,7 +125,7 @@ import Container from "~/components/Container.vue";
               class="  h-[102px] md:h-[160px] md:w-[91%] border border-black mb-[15px] mt-[1px] p-[4px] box-border"
             ></textarea>
             <button
-              class="block bg-green-900 text-white font-medium w-[50%] h-[38px] md:h-[50px] mx-auto hover:bg-transparent border-2 border-black-500;"
+              class="block bg-[#4A3620] text-white font-medium w-[50%] h-[38px] md:h-[50px] mx-auto hover:bg-transparent border-2 border-black-500;"
             >
               Submit
             </button>

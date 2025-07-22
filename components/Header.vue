@@ -1,6 +1,6 @@
 <template>
   <div
-    class="h-[87px] flex-row md:flex hidden w-full bg-green-900 font-[Sans-serif]"
+    class="h-[87px] flex-row md:flex hidden w-full bg-[#4A3620] font-[Sans-serif] shadow-3xl shadow-b shadow-spread "
   >
     <div class="flex w-[18%] items-center justify-center">Hello</div>
     <div class="w-[82%] flex items-center justify-around bg-transparent">
@@ -21,7 +21,7 @@
         </button>
         <div
           v-if="isVisible"
-          class="flex flex-col bg-green-900 pb-[3px] z-50 gap-2 text-sm pl-2 absolute w-[150px] mt-[10px]"
+          class="flex flex-col bg-[#4A3620] pb-[3px] z-50 gap-2 text-sm pl-2 absolute w-[150px] mt-[10px]"
         >
           <NuxtLink
             to="/kenya"
@@ -118,7 +118,7 @@
         ABOUT US
       </NuxtLink>
       <NuxtLink
-        class="text-[14px] leading-[14px] font-semibold no-underline p-[10px] bg-[#FFD700] text-black flex items-center"
+        class="text-[14px] leading-[14px] font-semibold no-underline p-[10px] bg-yellow-400 text-black flex items-center"
         to="/contact"
       >
         MAKE INQUIRIES
@@ -131,7 +131,7 @@
   </div>
 
   <div
-    class="flex flex-row max-w-[768px] md:hidden h-[80px] justify-between items-center px-4 box-border bg-green-900 w-full text-white font-[edgaramond]"
+    class="flex flex-row max-w-[768px] md:hidden h-[80px] justify-between items-center px-4 box-border bg-[#4A3620] w-full text-white font-[edgaramond]"
   >
     <div>logo</div>
     <button @click="togglePopup">
@@ -143,7 +143,7 @@
   </div>
   <div
     v-if="isOpen"
-    class="fixed top-0 right-0 flex flex-row w-[90%] h-[100vh] z-50 bg-green-900 text-white px-[40px] pt-[100px]"
+    class="fixed top-0 right-0 flex flex-row w-[90%] h-[100vh] z-50 bg-[#4A3620] text-white px-[40px] pt-[100px]"
   >
     <div class="flex flex-col gap-[3px]">
       <NuxtLink

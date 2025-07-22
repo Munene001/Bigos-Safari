@@ -1,6 +1,6 @@
 <template>
     <div
-      class="flex flex-col gap-[20px] w-[87%] h-[300px] border border-gray-500 p-[20px] md:w-[100%]"
+      class="flex flex-col gap-[20px] w-[87%] h-[300px] border border-gray-500 p-[20px] md:w-[100%] rounded-lg"
     >
       <Icon :name="iconName" style="font-size: 64px !important; color: green" />
       <div class=" text-[24px] font-bold leading-[26px]">

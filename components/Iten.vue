@@ -1,7 +1,7 @@
 <template>
-  <div class="bg-[#1d2326]">
+  <div class="bg-[#4A3620] rounded-xl">
     <div
-      class="text-white text-[40px] leading-[55px] text-center md:text-start py-[30px] font-medium flex flex-col gap-[15px] px-[10px]"
+      class="text-white text-[40px] leading-[55px] text-center md:text-start py-[30px] font-medium flex flex-col gap-[15px] px-[10px] "
     >
       <div>
         <div class="md:text-[30px] leading-[34px] text-[16px] font-semibold">

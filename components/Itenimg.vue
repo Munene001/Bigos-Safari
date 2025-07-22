@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="px-[10px]">
       <div class="text-xl font-bold ">GALLERY IMAGES</div>
       <div v-if="itinerary && itinerary.images && itinerary.images.length > 0" class="flex flex-col gap-[2px] ">
         
@@ -22,7 +22,7 @@
           <img 
             :src="'http://127.0.0.1:8000' + selectedImage.image_url"
             :alt="selectedImage.caption || 'Gallery Image'"
-            class="w-full h-96 object-cover object-center rounded-sm"
+            class=" h-96 object-cover object-center rounded-sm"
           />
           <p v-if="selectedImage.caption" class="text-sm text-gray-500 mt-2">
             {{ selectedImage.caption }}
