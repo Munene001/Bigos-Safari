@@ -34,12 +34,40 @@
         <div class="text-[17px] leading-[25px]">{{itinerary.destination_description }}</div>
         
       </div>
-      <div class="hidden md:flex  w-[40%]  bg-gray-100 p-[20px] h-[200px] text-center flex-col gap-[15px]">
-        <div>TALK TO OUR EXPERTS</div>
-        <div>They’ll gladly share their insider tips and work with you to design a personalized journey you’ll remember forever.</div>
-        <div class="flex flex-row justify-between"><div>+254715067768</div> <div><span><Icon name = "icon-park:hand-right"/></span> <NuxtLink to="/contact" class="text-green-700">Lets discuss your trip</NuxtLink></div></div>
-
+      <div
+        class="hidden md:flex w-[40%] bg-gray-100 p-[20px] justify-around items-start flex-col gap-[15px]"
+      >
+      <div class="text-18px text-black">OUR VALUES</div>
+    
+      <item
+        title="20+ YEARS OF WILD EXPERTISE"
+        description="Guided by decades of safari wisdom, we craft journeys only seasoned experts can deliver."
+        iconName="oui:vis-timelion"
+      />
+      <item
+        title="BESPOKE SAFARI DREAMS"
+        description="Every detail customized—because no two wilderness adventures should be alike."
+        iconName="cib:safari"
+      />
+      <item
+        title="FINANCIAL PEACE OF MIND"
+        description="ATOL protected & price-locked—no surprises, just wild freedom."
+        iconName="game-icons:peace-dove"
+      />
+      <item
+        title="END-TO-END SAFARI GUARDIANS"
+        description="From booking to homecoming, we’re your 24/7 safety net in the wild."
+        iconName="game-icons:paw"
+      />
+      <item
+        title="PAY ONLY WHEN PERFECTED"
+        description="Your itinerary is finalized to perfection before any payment is required."
+        iconName="game-icons:pay-money"
+      />
+          
+        
       </div>
+      
     </div>
   </div>
   

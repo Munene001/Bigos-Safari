@@ -2,6 +2,31 @@
   <div
     class="w-[30%] flex px-[5px] py-[10px]  flex-col gap-[20px] border-r md:w-[15%] relative border-gray-300 bg-white"
   >
+  <div>
+      <button
+        class="flex flex-row gap-[2px] mb-[5px] text-[14px] text-black leading-[14px] font-semibold no-underline"
+        active-class="bg-[#FFD700]"
+        exact-active-class="bg-[#FFD700]"
+      >
+        COUNTRIES<Icon name="ant-design:down-outlined" />
+      </button>
+      <div class="flex flex-col pb-[3px] z-50 gap-[2px] text-sm">
+        <NuxtLink
+          to="/Dashboard/Countries/New"
+          class="border-b border-gray-300 hover:bg-[#FFD700] items-center text-black px-[5px] box-border"
+          active-class="bg-[#FFD700]"
+          exact-active-class="bg-[#FFD700]"
+          >ADD NEW</NuxtLink
+        >
+        <NuxtLink
+          to="/Dashboard/Countries/List"
+          class="hover:bg-[#FFD700] items-center text-black px-[5px] box-border"
+          active-class="bg-[#FFD700]"
+          exact-active-class="bg-[#FFD700]"
+          >SHOW LISTINGS</NuxtLink
+        >
+      </div>
+    </div>
   
     <div>
       <button

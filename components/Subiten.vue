@@ -1,5 +1,5 @@
 <template>
-  <div v-if="itinerary" class="md:flex h-[120vh] hidden bg-gray-200 py-[50px] rounded-xl">
+  <div v-if="itinerary" class="md:flex h-[120vh] hidden bg-[#c7641d] py-[50px] rounded-xl">
     <!-- LEFT SIDEBAR - SUB-ITINERARIES -->
     <div
       class="w-80 bg-white border-r border-gray-300 p-4 overflow-y-auto sticky top-0 h-[screen]"
@@ -41,7 +41,7 @@
     <!-- RIGHT CONTENT - DAY PLANS -->
     <div class="flex-1 overflow-y-auto overflow-x-hidden h-[screen]">
       <template v-if="activeSubItinerary ">
-        <div class="max-w-3xl mx-auto">
+        <div class="w-[90%] mx-auto">
           <h3 class="text-2xl font-bold mb-6 text-[#4A3620]">
             {{ itinerary.main_destination }} Itinerary
           </h3>
