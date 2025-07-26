@@ -2,6 +2,7 @@
 // If you are using PurgeCSS, make sure to whitelist the carousel CSS classes
 import 'vue3-carousel/carousel.css'
 import { Carousel, Slide, Pagination, Navigation, Icon } from 'vue3-carousel'
+import { link } from '#build/ui';
 
 const carouselConfig = {
   itemsToShow: 'auto',
@@ -14,62 +15,74 @@ const slides = [
   {
     image: '/Kenya.webp',
     title: 'Kenya',
-    description: 'East African wildlife wonderland'
+    description: 'East African wildlife wonderland',
+    link: '/kenya'
   },
   {
     image: '/tanzania.webp',
     title: 'Tanzania',
-    description: 'East African safari paradise'
+    description: 'East African safari paradise',
+    link: '/tanzania'
   },
   {
     image: '/Zanzibar.webp',
     title: 'Zanzibar',
-    description: 'East African tropical island gem'
+    description: 'East African tropical island gem',
+    link: '/zanzibar'
   },
   {
     image: '/Uganda.webp',
     title: 'Uganda',
-    description: 'East African mountain gorilla haven'
+    description: 'East African mountain gorilla haven',
+    link: '/uganda'
   },
   {
     image: '/Southafrica.webp',
     title: 'South Africa',
-    description: 'Southern African diverse destination'
+    description: 'Southern African diverse destination',
+    link: '/southafrica'
   },
   {
     image: '/Botswana.webp',
     title: 'Botswana',
-    description: 'Southern African delta wilderness'
+    description: 'Southern African delta wilderness',
+    link: '/botswana'
   },
   {
     image: '/Namibia.webp',
     title: 'Namibia',
-    description: 'Southern African desert landscape'
+    description: 'Southern African desert landscape',
+    link: '/namibia'
   },
   {
     image: '/Mauritius.webp',
     title: 'Mauritius',
-    description: 'Indian Ocean island paradise'
+    description: 'Indian Ocean island paradise',
+    link: '/mauritius'
   },
   {
     image: '/Seychelles.webp',
     title: 'Seychelles',
-    description: 'Indian Ocean archipelago jewel'
+    description: 'Indian Ocean archipelago jewel',
+    link: '/seychelles'
   },
   {
     image: '/Rwanda.webp',
     title: 'Rwanda',
-    description: 'East African mountain retreat'
+    description: 'East African mountain retreat',
+    link: '/rwanda'
   },
   {
     image: '/Maldives.webp',
     title: 'Maldives',
-    description: 'Indian Ocean overwater paradise'
+    description: 'Indian Ocean overwater paradise',
+    link: '/maldives'
   },
   {
     image: '/Mozambique.webp',
     title: 'Mozambique',
-    description: 'Southern African coastal escape'
+    description: 'Southern African coastal escape',
+    link: '/mozambique'
   },
 ]; </script>
 
@@ -88,13 +101,13 @@ const slides = [
   <Carousel v-bind="carouselConfig" class=" flex md:w-[65%] overflow-hidden " id="1">
     <Slide v-for= "(slide, index) in slides " :key="index">
       
-      <div class="relative h-[450px] w-[330px] overflow-hidden">
+      <NuxtLink :to= slide.link  class="relative h-[450px] w-[330px] overflow-hidden">
       <img :src="slide.image" :alt="'Slide' + (index + 1)" class="h-full w-full object-cover" />
       <div class="absolute bottom-6 left-0 right-0   text-white bg-black bg-opacity-20 px-[20px]">
         <h3 class="text-[28px] font-bold font-[Sans-serif]">{{ slide.title }}</h3>
         <p class="text-sm font-[Sans-serif] text-green-100">{{ slide.description }}</p>
       </div>
-    </div>
+      </NuxtLink>
        
       
     </Slide>

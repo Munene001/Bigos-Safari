@@ -80,6 +80,78 @@
       </div>
   
       <Subc :country="country" />
+      <div class="px-[10px] py-[20px] md:py-[40px] flex flex-col md:flex-row gap-[30px]">
+    <!-- FAQ Accordion -->
+    <div class="md:w-[60%]">
+      <h2 class="text-[24px] md:text-[28px] font-bold mb-[20px]">FREQUENTLY ASKED QUESTIONS</h2>
+      
+      <div class="space-y-[10px]">
+        <div 
+          v-for="(faq, index) in country?.faqs" 
+          :key="index" 
+          class="border-b border-gray-200 pb-[10px]"
+        >
+          <button 
+            @click="toggleFaq(index)"
+            class="flex justify-between items-center w-full text-left py-[15px] focus:outline-none"
+          >
+            <span class="text-[16px] md:text-[18px] font-medium">{{ faq.question }}</span>
+            <span class="text-orange-500">
+              <Icon 
+                :name="openFaqs.includes(index) ? 'mdi:chevron-up' : 'mdi:chevron-down'" 
+                width="24"
+              />
+            </span>
+          </button>
+          
+          <div 
+            v-show="openFaqs.includes(index)"
+            class="pb-[15px] text-[14px] md:text-[16px] text-gray-700"
+          >
+            {{ faq.answer }}
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Contact Info (hidden on mobile) -->
+    <div class="hidden md:flex md:w-[40%] bg-gray-100 p-[30px] rounded-lg">
+      <div class="space-y-[25px]">
+        <h3 class="text-[20px] font-bold">NEED HELP?</h3>
+        
+        <div class="space-y-[15px]">
+          <div class="flex items-start gap-[15px]">
+            <Icon name="mdi:phone" width="24" class="text-[#c7641d] mt-[2px]" />
+            <div>
+              <p class="font-medium">Call us</p>
+              <p class="text-gray-600">+1 (234) 567-8900</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start gap-[15px]">
+            <Icon name="mdi:email" width="24" class="text-[#c7641d] mt-[2px]" />
+            <div>
+              <p class="font-medium">Email us</p>
+              <p class="text-gray-600">info@safaribookings.com</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start gap-[15px]">
+            <Icon name="mdi:clock" width="24" class="text-[#c7641d] mt-[2px]" />
+            <div>
+              <p class="font-medium">Opening hours</p>
+              <p class="text-gray-600">Mon-Fri: 8am - 6pm</p>
+              <p class="text-gray-600">Sat: 9am - 4pm</p>
+            </div>
+          </div>
+        </div>
+        
+        <button class="bg-[#c7641d] text-white px-[25px] py-[10px] rounded-md font-medium">
+          Contact Us
+        </button>
+      </div>
+    </div>
+  </div>
     </div>
   </template>
   
@@ -116,6 +188,15 @@
   const loading = ref(true);
   const error = ref("");
   const route = useRoute();
+  const openFaqs = ref<number[]>([]);
+
+const toggleFaq = (index: number) => {
+  if (openFaqs.value.includes(index)) {
+    openFaqs.value = openFaqs.value.filter(i => i !== index);
+  } else {
+    openFaqs.value.push(index);
+  }
+};
   
   const fetchCountry = async () => {
     error.value = "";

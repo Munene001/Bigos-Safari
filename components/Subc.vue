@@ -128,7 +128,7 @@
   </div>
 
   <!-- Mobile version -->
-  <div v-if="country" class="md:hidden bg-gray-50 py-[40px] px-[10px]">
+  <div v-if="country" class="md:hidden bg-[#c7641d] py-[40px] px-[10px]">
     <div class="mb-4">
       <h2 class="text-xl font-bold text-gray-800">
         {{ country.name }} NATIONAL PARKS
