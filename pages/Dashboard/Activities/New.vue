@@ -30,8 +30,8 @@
           >
             <option
               v-for="country in countries"
-              :key="country.id"
-              :value="country.id"
+              :key="country.country_id"
+              :value="country.country_id"
             >
               {{ country.name }}
             </option>
@@ -171,7 +171,7 @@ const loading = ref(false);
 const message = ref("");
 const error = ref(false);
 const imessage = ref("");
-const countries = ref<{ id: number; name: string }[]>([]);
+const countries = ref<{ country_id: number; name: string }[]>([]);
 const formElement = ref<HTMLFormElement>();
 
 const handlePrimaryImage = (event: Event) => {
@@ -215,6 +215,7 @@ const fetchCountries = async () => {
   try {
     const response = await axios.get(`http://127.0.0.1:8000/api/countries`);
     countries.value = response.data;
+    console.log('Loaded countries:', countries.value);
   } catch (err: any) {
     error.value = true;
     message.value = err.response?.data?.message || "Failed to fetch countries";
@@ -229,6 +230,7 @@ const resetForm = () => {
     description: "",
     difficulty_level: "",
     duration_hours: 0,
+    
   };
 
   primaryImage.value = null;
@@ -237,9 +239,20 @@ const resetForm = () => {
 };
 
 const submitActivity = async () => {
+  
+  
+  console.log('PrimaryImage before submit:', {
+    exists: !!primaryImage.value,
+    name: primaryImage.value?.name,
+    size: primaryImage.value?.size
+  });
+  
+
   if (!primaryImage.value) {
-    error.value = true;
-    message.value = "Primary Image is required";
+    // Add more debug info
+    console.error('Missing primary image despite selection');
+    const fileInput = document.getElementById('primaryImage') as HTMLInputElement;
+    console.log('File input files:', fileInput?.files);
     return;
   }
 
@@ -247,9 +260,10 @@ const submitActivity = async () => {
 
   try {
     const formData = new FormData();
+   
+    formData.append("country_id", form.value.country_id.toString());
     formData.append("activity_name", form.value.activity_name);
     formData.append("description", form.value.description);
-    formData.append("country_id", form.value.country_id.toString());
     formData.append("difficulty_level", form.value.difficulty_level);
     formData.append("duration_hours", form.value.duration_hours.toString());
 
@@ -259,28 +273,24 @@ const submitActivity = async () => {
     galleryImages.value.forEach((file, index) => {
       formData.append(`gallery_images[${index}]`, file);
     });
-   
+
+  
+
     const response = await axios.post(
       `http://127.0.0.1:8000/api/activities`,
       formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      }
+      { headers: { "Content-Type": "multipart/form-data" } }
     );
-    message.value =
-      response.data.message || "Activity created successfully";
+    
+    message.value = response.data.message || "Activity created successfully";
     error.value = false;
     resetForm();
 
-    setTimeout(() => {
-      message.value = "";
-    }, 9000);
+    setTimeout(() => message.value = "", 9000);
   } catch (err: any) {
+    console.error("[DEBUG 3] Error details:", err.response?.data || err);
     error.value = true;
-    message.value =
-      err.response?.data?.message || "Failed to post Activity";
+    message.value = err.response?.data?.message || "Failed to post Activity";
   } finally {
     loading.value = false;
   }

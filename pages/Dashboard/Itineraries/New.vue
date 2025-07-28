@@ -30,8 +30,8 @@
           >
             <option
               v-for="country in countries"
-              :key="country.id"
-              :value="country.id"
+              :key="country.country_id"
+              :value="country.country_id"
             >
               {{ country.name }}
             </option>
@@ -343,7 +343,7 @@ const galleryImages = ref<File[]>([]);
 const loading = ref(false);
 const message = ref("");
 const error = ref(false);
-const countries = ref<{ id: number; name: string }[]>([]);
+const countries = ref<{ country_id: number; name: string }[]>([]);
 const accommodations = ref<{ accommodation_id: number; name: string; location: string }[]>([]);
 const formElement = ref<HTMLFormElement>();
 
