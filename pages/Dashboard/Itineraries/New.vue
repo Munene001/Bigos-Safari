@@ -228,16 +228,7 @@
                   </option>
                 </select>
               </div>
-              <div>
-                <label>Night Number:</label>
-                <input
-                  v-model.number="dayPlan.night_number"
-                  type="number"
-                  min="1"
-                  class="border border-black h-[42px] p-[8px]"
-                  :disabled="!dayPlan.accommodation_id"
-                />
-              </div>
+              
             </div>
           </div>
           
@@ -331,7 +322,7 @@ const form = ref<ItineraryForm>({
           location: "",
           description: "",
           accommodation_id: null,
-          night_number: null,
+          
         },
       ],
     },
@@ -347,6 +338,7 @@ const countries = ref<{ country_id: number; name: string }[]>([]);
 const accommodations = ref<{ accommodation_id: number; name: string; location: string }[]>([]);
 const formElement = ref<HTMLFormElement>();
 
+// Helper functions
 const addSubItinerary = () => {
   form.value.sub_itineraries.push({
     duration_days: 1,
@@ -355,35 +347,35 @@ const addSubItinerary = () => {
     special_notes: "",
     day_plans: [
       {
-        day_number: 1,
+        day_number: form.value.sub_itineraries.at(-1)?.day_plans.length || 1,
         location: "",
         description: "",
         accommodation_id: null,
-        night_number: null,
+        
       },
     ],
   });
 };
 
 const addDayPlan = (subItineraryIndex: number) => {
-  const dayNumber = form.value.sub_itineraries[subItineraryIndex].day_plans.length + 1;
-  form.value.sub_itineraries[subItineraryIndex].day_plans.push({
+  const subItinerary = form.value.sub_itineraries[subItineraryIndex];
+  const dayNumber = subItinerary.day_plans.length + 1;
+  subItinerary.day_plans.push({
     day_number: dayNumber,
     location: "",
     description: "",
     accommodation_id: null,
-    night_number: null,
+    
   });
 };
 
 const attachAccommodation = async (
   itineraryId: number,
-  subItineraryIndex: number,
-  dayPlanIndex: number
-) => {
-  const dayPlan = form.value.sub_itineraries[subItineraryIndex].day_plans[dayPlanIndex];
+  subItineraryId: number,
+  accommodation_id: number,
   
-  if (!dayPlan.accommodation_id) {
+) => {
+  if (!accommodation_id  === null) {
     error.value = true;
     message.value = "Please select both accommodation and night number";
     return;
@@ -391,31 +383,30 @@ const attachAccommodation = async (
 
   try {
     await axios.post(
-      `http://127.0.0.1:8000/api/itineraries/${itineraryId}/sub-itineraries/${subItineraryIndex + 1}/accommodations`,
-      {
-        accommodation_id: dayPlan.accommodation_id,
-        night_number: dayPlan.night_number,
-      }
+      `http://127.0.0.1:8000/api/itineraries/${itineraryId}/sub-itineraries/${subItineraryId}/accommodations`,
+      { accommodation_id, }
     );
-    
     message.value = "Accommodation attached successfully";
     error.value = false;
   } catch (err: any) {
     error.value = true;
     message.value = err.response?.data?.message || "Failed to attach accommodation";
+    throw err; // Re-throw to handle in calling function
   }
 };
 
+// Image handlers
 const handlePrimaryImage = (event: Event) => {
   const input = event.target as HTMLInputElement;
-  if (input.files && input.files[0]) {
-    if (input.files[0].size > 250 * 1024) {
+  if (input.files?.[0]) {
+    const file = input.files[0];
+    if (file.size > 250 * 1024) {
       error.value = true;
       message.value = "Primary image must be under 250kb";
       input.value = "";
       primaryImage.value = null;
     } else {
-      primaryImage.value = input.files[0];
+      primaryImage.value = file;
       error.value = false;
       message.value = "";
     }
@@ -426,7 +417,7 @@ const handleGalleryImages = (event: Event) => {
   const input = event.target as HTMLInputElement;
   if (input.files) {
     const files = Array.from(input.files);
-    const validFiles = files.filter((file) => file.size <= 250 * 1024);
+    const validFiles = files.filter(file => file.size <= 250 * 1024);
     galleryImages.value = validFiles;
 
     if (validFiles.length !== files.length) {
@@ -436,35 +427,31 @@ const handleGalleryImages = (event: Event) => {
       error.value = false;
       message.value = "";
     }
-
-    input.value = "";
   }
 };
 
+// Data fetchers
 const fetchCountries = async () => {
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/api/countries`);
-    countries.value = response.data;
+    const { data } = await axios.get(`http://127.0.0.1:8000/api/countries`);
+    countries.value = data;
   } catch (err: any) {
-    error.value = true;
-    message.value = err.response?.data?.message || "Failed to fetch countries";
+    handleError(err, "Failed to fetch countries");
   }
 };
 
 const fetchAccommodations = async () => {
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/api/accommodations`,{
-      params:{
-        minimal:true
-      }
+    const { data } = await axios.get(`http://127.0.0.1:8000/api/accommodations`, {
+      params: { minimal: true }
     });
-    accommodations.value = Array.isArray(response.data) ? response.data : response.data.data;
+    accommodations.value = Array.isArray(data) ? data : data.data;
   } catch (err: any) {
-    error.value = true;
-    message.value = err.response?.data?.message || "Failed to fetch accommodations";
+    handleError(err, "Failed to fetch accommodations");
   }
 };
 
+// Form handlers
 const resetForm = () => {
   form.value = {
     title: "",
@@ -486,7 +473,7 @@ const resetForm = () => {
             location: "",
             description: "",
             accommodation_id: null,
-            night_number: null,
+            
           },
         ],
       },
@@ -494,11 +481,16 @@ const resetForm = () => {
   };
   primaryImage.value = null;
   galleryImages.value = [];
-  if (formElement.value) {
-    formElement.value.reset();
-  }
+  formElement.value?.reset();
 };
 
+const handleError = (err: any, defaultMessage: string) => {
+  error.value = true;
+  message.value = err.response?.data?.message || defaultMessage;
+  console.error(err);
+};
+
+// Main submission
 const submitItinerary = async () => {
   if (!primaryImage.value) {
     error.value = true;
@@ -507,76 +499,90 @@ const submitItinerary = async () => {
   }
 
   loading.value = true;
+  error.value = false;
+  message.value = "";
 
   try {
+    // Prepare form data
     const formData = new FormData();
-    formData.append("title", form.value.title);
-    formData.append("country_id", form.value.country_id.toString());
-    formData.append("overview", form.value.overview);
-    formData.append("best_season", form.value.best_season);
-    formData.append("main_destination", form.value.main_destination);
-    formData.append("destination_description", form.value.destination_description);
-    formData.append("destination_location", form.value.destination_location);
+    Object.entries({
+      title: form.value.title,
+      country_id: form.value.country_id,
+      overview: form.value.overview,
+      best_season: form.value.best_season,
+      main_destination: form.value.main_destination,
+      destination_description: form.value.destination_description,
+      destination_location: form.value.destination_location,
+    }).forEach(([key, value]) => formData.append(key, String(value)));
 
-    if (primaryImage.value) {
-      formData.append("primary_image", primaryImage.value);
-    }
-
+    // Add images
+    if (primaryImage.value) formData.append("primary_image", primaryImage.value);
     galleryImages.value.forEach((file, index) => {
       formData.append(`gallery_images[${index}]`, file);
     });
 
+    // Add sub-itineraries and day plans
     form.value.sub_itineraries.forEach((sub, subIndex) => {
-      formData.append(`sub_itineraries[${subIndex}][duration_days]`, sub.duration_days.toString());
-      formData.append(`sub_itineraries[${subIndex}][duration_nights]`, sub.duration_nights.toString());
-      formData.append(`sub_itineraries[${subIndex}][price]`, sub.price.toString());
-      
-      if (sub.special_notes) {
-        formData.append(`sub_itineraries[${subIndex}][special_notes]`, sub.special_notes);
-      }
+      Object.entries({
+        duration_days: sub.duration_days,
+        duration_nights: sub.duration_nights,
+        price: sub.price,
+        ...(sub.special_notes && { special_notes: sub.special_notes })
+      }).forEach(([key, value]) => {
+        formData.append(`sub_itineraries[${subIndex}][${key}]`, String(value));
+      });
 
       sub.day_plans.forEach((day, dayIndex) => {
-        formData.append(`sub_itineraries[${subIndex}][day_plans][${dayIndex}][day_number]`, day.day_number.toString());
-        formData.append(`sub_itineraries[${subIndex}][day_plans][${dayIndex}][location]`, day.location);
-        formData.append(`sub_itineraries[${subIndex}][day_plans][${dayIndex}][description]`, day.description);
+        Object.entries({
+          day_number: day.day_number,
+          location: day.location,
+          description: day.description,
+          ...(day.activities_summary && { activities_summary: day.activities_summary })
+        }).forEach(([key, value]) => {
+          formData.append(`sub_itineraries[${subIndex}][day_plans][${dayIndex}][${key}]`, String(value));
+        });
       });
     });
 
-    const response = await axios.post(
-      `http://127.0.0.1:8000/api/itineraries`,
-      formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      }
-    );
+    // Submit itinerary
+    const { data } = await axios.post(`http://127.0.0.1:8000/api/itineraries`, formData, {
+      headers: { "Content-Type": "multipart/form-data" }
+    });
 
-    const itineraryId = response.data.itinerary.itinerary_id;
+    // Attach accommodations
+    
     for (const [subIndex, subItinerary] of form.value.sub_itineraries.entries()) {
-      for (const [dayIndex, dayPlan] of subItinerary.day_plans.entries()) {
-        if (dayPlan.accommodation_id && dayPlan.night_number) {
-          await attachAccommodation(itineraryId, subIndex, dayIndex);
-        }
-      }
+  const subItineraryData = data.itinerary.sub_itineraries[subIndex];
+  
+  // Proper type narrowing with null check
+  if (!subItineraryData || typeof subItineraryData.sub_itinerary_id !== 'number') {
+    console.error(`Missing or invalid sub_itinerary_id for sub-itinerary at index ${subIndex}`);
+    continue;
+  }
+
+  const subItineraryId: number = subItineraryData.sub_itinerary_id;
+
+  for (const dayPlan of subItinerary.day_plans) {
+    if (dayPlan.accommodation_id  !== null) {
+      await attachAccommodation(
+        data.itinerary.itinerary_id,
+        subItineraryId,
+        dayPlan.accommodation_id,
+        
+      );
     }
-
-    message.value = "Itinerary created successfully";
-    error.value = false;
+  }
+}
+    message.value = "Itinerary created successfully!";
     resetForm();
-
-    setTimeout(() => {
-      message.value = "";
-    }, 9000);
   } catch (err: any) {
-    error.value = true;
-    message.value = err.response?.data?.message || "Failed to create itinerary";
+    handleError(err, "Failed to create itinerary");
   } finally {
     loading.value = false;
   }
 };
 
-// Initialize data
+// Initialize
 fetchCountries();
 fetchAccommodations();
 </script>
