@@ -13,7 +13,7 @@
         <div
           class="absolute z-10 text-white md:w-[60%] left-[5%] md:top-[20%] md:space-y-[30px] top-[100px] space-y-[20px] w-[80%] md:translate-x-0 bg-black bg-opacity-5 p-[5px]"
         >
-          <div class="hidden md:block text-white">
+          <div class="hidden md:block text-white font-tres font-semibold">
             HOME > COUNTRIES > {{ country.name }}
           </div>
           <div
@@ -22,7 +22,7 @@
             {{ country.name }}
           </div>
           <div
-            class="text-white md:text-[21px] md:leading-[30px font-[Sans-serif] text-[15px] font-medium"
+            class="text-white md:text-[21px] md:leading-[30px  text-[15px] font-medium font-sinco"
           >
           Home to the Serengeti and the Ngorongoro Crater, Tanzania is a country of vast landscapes and thriving wildlife, where age-old traditions and spectacular natural wonders create unforgettable experien
           </div>
@@ -36,11 +36,11 @@
           >
             <div class="flex flex-col gap-[10px]">
               <div class="text-[28px] md:text-[32px] font-bold leading-[28px]">TANZANIA OVERVIEW</div>
-              <div class="hidden md:block font-medium">Tanzania is home to Mount Kilimanjaro, Africa’s highest peak and the world’s tallest free-standing mountain. It also hosts the oldest known footprints of early humans, preserved for over 3.6 million years at Laetoli.</div>
+              <div class="hidden md:block font-medium font-sinco">Tanzania is home to Mount Kilimanjaro, Africa’s highest peak and the world’s tallest free-standing mountain. It also hosts the oldest known footprints of early humans, preserved for over 3.6 million years at Laetoli.</div>
             </div>
             <img src="/tz.png" class="height-[50px]" />
           </div>
-          <div class="text-[17px] leading-[25px]">{{ country.overview }}</div>
+          <div class="text-[17px] leading-[25px] font-sinco">{{ country.overview }}</div>
          
           
         </div>
@@ -82,7 +82,7 @@
       <Subc :country="country" />
       <div class="px-[10px] py-[20px] md:py-[40px] flex flex-col md:flex-row gap-[30px]">
     <!-- FAQ Accordion -->
-    <div class="md:w-[60%]">
+    <div class="md:w-[60%] font-sinco">
       <h2 class="text-[24px] md:text-[28px] font-bold mb-[20px]">FREQUENTLY ASKED QUESTIONS</h2>
       
       <div class="space-y-[10px]">

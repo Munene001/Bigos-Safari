@@ -4,10 +4,10 @@ import Container from "~/components/Container.vue";
 
 <template>
   <div
-    class="bg-[url('/public/wood.jpg')] bg-cover bg-center w-full flex flex-col"
+    class="bg-[url('/public/wood.jpg')] bg-cover bg-center w-full flex flex-col font-sinco"
   >
     <div
-      class="text-white flex flex-col text-center h-[300px] justify-center bg-gradient-to-b from-black/20 to-black/10 font-[Sans-serif] px-[20px]"
+      class="text-white flex flex-col text-center h-[300px] justify-center bg-gradient-to-b from-black/20 to-black/10 font-[Sans-serif] px-[20px] font-sinco"
     >
       <div class="text-[74px] font-semibold font-serif">Contact</div>
       <div class="text-[25px] font-bold">

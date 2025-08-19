@@ -1,5 +1,8 @@
 <template>
-  <div v-if="itinerary" class="md:flex h-[120vh] hidden bg-[#c7641d] py-[50px] rounded-xl">
+  <div
+    v-if="itinerary"
+    class="md:flex h-[120vh] hidden bg-[#c7641d] py-[50px] rounded-xl font-sinco"
+  >
     <!-- LEFT SIDEBAR - SUB-ITINERARIES -->
     <div
       class="w-80 bg-white border-r border-gray-300 p-4 overflow-y-auto sticky top-0 h-[screen]"
@@ -33,23 +36,63 @@
           <div v-if="sub.price" class="text-sm font-semibold mt-3">
             Ksh{{ sub.price.toLocaleString() }}
           </div>
-         
         </div>
       </div>
     </div>
 
     <!-- RIGHT CONTENT - DAY PLANS -->
     <div class="flex-1 overflow-y-auto overflow-x-hidden h-[screen]">
-      <template v-if="activeSubItinerary ">
+      <template v-if="activeSubItinerary">
         <div class="w-[90%] mx-auto">
           <h3 class="text-2xl font-bold mb-6 text-[#4A3620]">
             {{ itinerary.main_destination }} Itinerary
           </h3>
-          <div v-if="activeSubItinerary.special_notes" class="mb-4 p-3 bg-green-50 rounded-lg">
-            <p class="text-green-800 italic">{{ activeSubItinerary.special_notes }}</p>
-          </div>
 
-          <!-- Debug Information -->
+          <!-- Special Notes and Accommodation Link -->
+          <div
+            v-if="
+              activeSubItinerary.special_notes ||
+              (activeSubItinerary.accommodations &&
+                activeSubItinerary.accommodations.length)
+            "
+            class="mb-4 p-3 bg-green-50 rounded-lg"
+          >
+            <div
+              v-if="
+                activeSubItinerary.accommodations &&
+                activeSubItinerary.accommodations.length
+              "
+            >
+              <span class="text-green-800 font-medium">Accommodation: </span>
+              <button
+                @click="toggleAccommodationDetails"
+                class="text-blue-600 hover:text-blue-800 underline text-sm"
+              >
+                {{ activeSubItinerary.accommodations[0].name }}
+              </button>
+
+              <AccommodationDetails
+                v-if="showAccommodationDetails"
+                :accommodation="activeSubItinerary.accommodations[0]"
+                @close="showAccommodationDetails = false"
+              />
+
+              <span
+                v-if="activeSubItinerary.accommodations[0].rating"
+                class="text-yellow-600 ml-2"
+              >
+                ★ {{ activeSubItinerary.accommodations[0].rating }}
+              </span>
+              <div>hello</div>
+            </div>
+
+            <p
+              v-if="activeSubItinerary.special_notes"
+              class="text-green-800 italic mb-2"
+            >
+              {{ activeSubItinerary.special_notes }}
+            </p>
+          </div>
 
           <div
             v-if="
@@ -78,7 +121,7 @@
                       </h4>
                       <p class="text-gray-600 mt-2">{{ day.description }}</p>
                     </div>
-                    
+
                     <div
                       v-if="
                         itinerary.images && itinerary.images[day.day_number - 1]
@@ -102,8 +145,6 @@
                     </div>
                   </div>
                 </div>
-
-                <!-- Day Plan Image -->
               </div>
             </div>
           </div>
@@ -157,7 +198,7 @@
           <div>
             <Icon
               name="icon-park-solid:down-two"
-              style="font-size: 30px; color:darkolivegreen"
+              style="font-size: 30px; color: darkolivegreen"
             />
           </div>
         </div>
@@ -170,8 +211,38 @@
           <h3 class="text-lg font-bold mb-3 text-green-900">
             {{ itinerary.main_destination }} Itinerary
           </h3>
-          <div v-if="activeSubItinerary?.special_notes" class="mb-4 p-3 bg-green-50 rounded-lg">
-            <p class="text-green-800 italic">{{ activeSubItinerary?.special_notes }}</p>
+
+          <!-- Special Notes and Accommodation Link for Mobile -->
+          <div
+            v-if="
+              sub.special_notes ||
+              (sub.accommodations && sub.accommodations.length)
+            "
+            class="mb-4 p-3 bg-green-50 rounded-lg"
+          >
+            <div v-if="sub.accommodations && sub.accommodations.length">
+              <span class="text-green-800 font-medium">Accommodation: </span>
+              <button
+                @click="toggleAccommodationDetails"
+                class="text-blue-600 hover:text-blue-800 underline text-sm"
+              >
+                {{ sub.accommodations[0].name }}
+              </button>
+              <AccommodationDetails
+                v-if="showAccommodationDetails"
+                :accommodation="sub.accommodations[0]"
+                @close="showAccommodationDetails = false"
+              />
+              <span
+                v-if="sub.accommodations[0].rating"
+                class="text-yellow-600 ml-2 text-sm"
+              >
+                ★ {{ sub.accommodations[0].rating }}
+              </span>
+            </div>
+            <p v-if="sub.special_notes" class="text-green-800 italic mb-2">
+              {{ sub.special_notes }}
+            </p>
           </div>
 
           <div v-if="sub.day_plans?.length">
@@ -215,17 +286,31 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 
 const activeSubIndex = ref(0);
-const debugInfo = ref(true); // Toggle to enable/disable debug output
+const accommodationsLoading = ref(false);
+const showAccommodationDetails = ref(false);
+
+const toggleAccommodationDetails = () => {
+  showAccommodationDetails.value = !showAccommodationDetails.value;
+};
+
+interface Accommodation {
+  accommodation_id: number;
+  name: string;
+  type: string;
+  location: string;
+  description: string;
+  rating: number;
+  website_url?: string;
+  images: [];
+}
 
 interface DayPlan {
   day_number: number;
   location: string;
   description: string;
-  accommodation_id: number | null;
-  night_number: number | null;
 }
 
 interface SubItinerary {
@@ -234,6 +319,7 @@ interface SubItinerary {
   duration_nights: number;
   price: number;
   special_notes?: string;
+  accommodations?: Accommodation[];
   day_plans: DayPlan[];
 }
 
@@ -267,24 +353,16 @@ const activeSubItinerary = computed(() => {
   if (!itinerary?.sub_itineraries) {
     return null;
   }
-
   return itinerary.sub_itineraries[activeSubIndex.value];
 });
 
 const mobileActiveIndex = ref<number | null>(null);
-const mobileActiveSubItinerary = computed(() => {
-  if (mobileActiveIndex.value === null || !itinerary?.sub_itineraries)
-    return null;
-  return itinerary.sub_itineraries[mobileActiveIndex.value];
-});
 
 // Mobile toggle function
 const toggleMobileSubItinerary = (index: number) => {
   if (mobileActiveIndex.value === index) {
-    // Clicking the already active item closes it
     mobileActiveIndex.value = null;
   } else {
-    // Clicking a new item opens it
     mobileActiveIndex.value = index;
   }
 };
@@ -294,4 +372,51 @@ const getDayImage = (dayNumber: number) => {
   if (!itinerary?.images?.length) return null;
   return itinerary.images[dayNumber - 1] || null;
 };
+
+// Fetch accommodations for sub-itineraries
+const fetchAccommodations = async () => {
+  if (!itinerary?.sub_itineraries || !itinerary.itinerary_id) return;
+
+  accommodationsLoading.value = true;
+  try {
+    // Create a new array to trigger reactivity
+    const updatedSubItineraries = [...itinerary.sub_itineraries];
+
+    for (let i = 0; i < updatedSubItineraries.length; i++) {
+      const sub = updatedSubItineraries[i];
+      if (!sub.accommodations) {
+        const response = await fetch(
+          `http://127.0.0.1:8000/api/itineraries/${itinerary.itinerary_id}/sub-itineraries/${sub.sub_itinerary_id}/accommodations`
+        );
+
+        if (response.ok) {
+          const accommodations = await response.json();
+          console.log(
+            "Fetched accommodations for sub",
+            sub.sub_itinerary_id,
+            ":",
+            accommodations
+          );
+          sub.accommodations = accommodations;
+          console.log(
+            "After assignment:",
+            itinerary.sub_itineraries[i].accommodations
+          );
+        }
+      }
+    }
+
+    // Replace the entire array to trigger reactivity
+    itinerary.sub_itineraries = updatedSubItineraries;
+  } catch (error) {
+    console.error("Failed to fetch accommodations:", error);
+  } finally {
+    accommodationsLoading.value = false;
+  }
+};
+
+// Fetch accommodations when component mounts
+onMounted(() => {
+  fetchAccommodations();
+});
 </script>

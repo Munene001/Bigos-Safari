@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="country"
-    class="md:flex h-[120vh] hidden bg-[#c7641d] py-[50px] rounded-xl"
+    class="md:flex h-[120vh] hidden bg-[#c7641d] py-[50px] rounded-xl font-sinco"
   >
     <!-- LEFT SIDEBAR - PARKS LIST -->
     <div

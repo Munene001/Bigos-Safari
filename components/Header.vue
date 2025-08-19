@@ -1,6 +1,6 @@
 <template>
   <div
-    class="h-[87px] flex-row md:flex hidden w-full bg-[#4A3620] font-[Sans-serif] shadow-3xl shadow-b shadow-spread "
+    class="h-[87px] flex-row md:flex hidden w-full bg-[#4A3620]  shadow-3xl shadow-b shadow-spread "
   >
     <div class="flex w-[18%] items-center justify-center">Hello</div>
     <div class="w-[82%] flex items-center justify-around bg-transparent">
@@ -108,7 +108,7 @@
           
         to="/Accomodations"
       >
-        ACCOMODATIONS
+        ACTIVITIES
       </NuxtLink>
       <NuxtLink
         class="text-[14px] leading-[14px] font-semibold no-underline text-white"

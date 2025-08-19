@@ -14,24 +14,24 @@
       
     />
     <div class="absolute  z-10  text-white  md:w-[60%] md:left-[5%] md:top-[20%] md:space-y-[30px]  top-[120px] space-y-[40px] translate-x-1/2 w-[60%] md:translate-x-0">
-      <div class="hidden md:block text-white ">HOME > ITINERARIES > {{ itinerary.title }}</div>
+      <div class="hidden md:block text-white font-tres font-semibold ">HOME > ITINERARIES > {{ itinerary.title }}</div>
     <div class="   md:text-[70px] md:leading-[68px] text-[32px] leading-[39px] font-bold">
         {{ itinerary.title}}
     </div>
     <button class=" text-[16px] leading-[24px]   bg-yellow-600  w-[166px] h-[40px]  ">See Itinerary</button>
     </div>
     </div>
-    <div class="bg-gray-200 flex flex-col md:items-center py-[20px] gap-[10px] md:grid md:grid-cols-3 md:h-[74px] px-[10px] rounded-b-xl">
+    <div class="bg-gray-200 flex flex-col md:items-center py-[20px] gap-[10px] md:grid md:grid-cols-3 md:h-[74px] px-[10px] rounded-b-xl font-uno">
       <div class="flex items-center gap-[5px]"><span><Icon name="subway:calendar-1" style="color: darkolivegreen;"/></span> <span>{{ itinerary.best_season }}</span></div>
       <div class="flex items-center gap-[5px]"><span><Icon name="ic:round-place" style="color: darkolivegreen;"/></span>{{ itinerary.main_destination }}</div>
       <div class="flex items-center gap-[5px]"><span><Icon name="material-symbols:clear-night" style="color: darkolivegreen;"/></span>{{ itinerary.sub_itineraries[0].duration_nights }} nights</div>
     </div>
 
     <div class="px-[10px] py-[20px] flex flex-row gap-[50px]">
-      <div class="md:w-[60%] flex flex-col gap-[20px]">
+      <div class="md:w-[60%] flex flex-col gap-[20px] ">
         <div class="text-[28px] font-bold leading-[28px]">TRIP OVERVIEW</div>
-        <div class="text-[17px] leading-[25px]">{{ itinerary.overview }}</div>
-        <div class="text-[17px] leading-[25px]">{{itinerary.destination_description }}</div>
+        <div class="text-[17px] leading-[25px] font-sinco">{{ itinerary.overview }}</div>
+        <div class="text-[17px] leading-[25px] font-sinco">{{itinerary.destination_description }}</div>
         
       </div>
       <div

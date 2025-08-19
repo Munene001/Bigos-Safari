@@ -1,24 +1,24 @@
 <template>
   <div
-    class="md:h-[calc(100vh-90px)] hidden md:flex md:flex-row relative box-border overflow-hidden shadow-lg shadow-b shadow-spread rounded-b-xl"    id='home'
+    class="md:h-[calc(100vh-90px)]  hidden md:flex md:flex-row relative box-border overflow-hidden shadow-lg shadow-b shadow-spread rounded-b-xl"    id='home'
   >
     <!-- Left Section -->
     <div
-      class="bg-[#4A3620] md:w-[50%] pl-[40px] pt-[80px] flex flex-col gap-[50px] box-border overflow-hidden"
+      class="bg-[#4A3620] md:w-[50%] pl-[40px]  pt-[80px] flex flex-col gap-[50px] box-border overflow-hidden"
     >
       <div class="flex flex-col gap-[30px] pr-[10px] pl-[10px] box-border">
         <div
-          class="text-white text-[38px] leading-[45px] font-semibold animate-title-in"
+          class="text-white text-[38px] font-tres leading-[45px] font-semibold animate-title-in"
         >
           ISLAND AND BUSH - JOURNEY TO WILD BEAUTY
         </div>
-        <div class="text-white text-[15px] leading-[24px] font-[Sans-serif]">
+        <div class="text-white text-[16px] font-sinco leading-[24px] ">
           
           
           Experience the untamed beauty of Africa, where pristine islands meet the raw majesty of the wild. Let us take you on a journey through nature’s finest landscapes, curated with comfort and adventure in perfect harmony.
         </div>
       </div>
-      <div class="flex flex-row justify-between items-center">
+      <div class="flex flex-row justify-between items-center font-sinco">
         <div class="flex flex-col gap-[25px] box-border">
           <button
             class="px-[15px] py-[7px] w-[150px] rounded-full bg-white hover:bg-blue-500 flex flex-row items-center gap-[10px] justify-center"

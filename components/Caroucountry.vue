@@ -88,7 +88,7 @@ const slides = [
 
 <template>
   <div class="md:bg-[url('grassland3.jpg')] bg-bottom bg-cover flex md:flex-row flex-col md:h-[600px] md:bg-opacity-10 bg-gray-200 py-[20px] gap-[20px] md:py-[1px] md:gap-[1px] relative rounded-t-xl">
-    <div class="hidden md:w-[35%] md:flex justify-center px-[10px] flex-col gap-[20px] font-[Sans-serif] text-white bg-opacity-20">
+    <div class="hidden md:w-[35%] md:flex justify-center px-[10px] flex-col gap-[20px]  text-white bg-opacity-20 font-sinco">
       <div class="font-bold text-green-500"><div class="text-[27px] leading-[32px]  ">Explore </div> <div class="text-[37px] leading-[45px]">Our Must-See Places</div></div>
       <div class="font-medium text-[22px] leading-[33px]" >Uncover essential insights on each location, from the best time to visit to how to make the most of your journey.</div>
     </div>
@@ -103,7 +103,7 @@ const slides = [
       
       <NuxtLink :to= slide.link  class="relative h-[450px] w-[330px] overflow-hidden">
       <img :src="slide.image" :alt="'Slide' + (index + 1)" class="h-full w-full object-cover" />
-      <div class="absolute bottom-6 left-0 right-0   text-white bg-black bg-opacity-20 px-[20px]">
+      <div class="absolute bottom-6 left-0 right-0 font-sinco  text-white bg-black bg-opacity-20 px-[20px]">
         <h3 class="text-[28px] font-bold font-[Sans-serif]">{{ slide.title }}</h3>
         <p class="text-sm font-[Sans-serif] text-green-100">{{ slide.description }}</p>
       </div>

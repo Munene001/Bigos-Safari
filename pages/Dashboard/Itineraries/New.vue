@@ -183,6 +183,22 @@
               class="border border-black w-full p-2"
             ></textarea>
           </div>
+          <div>
+                <label>Accommodation:</label>
+                <select
+                  v-model="subItinerary.accommodation_id"
+                  class="border border-black h-[42px] p-[8px]"
+                >
+                  <option :value="null">Select Accommodation</option>
+                  <option
+                    v-for="acc in accommodations"
+                    :key="acc.accommodation_id"
+                    :value="acc.accommodation_id"
+                  >
+                    {{ acc.name }} ({{ acc.location }})
+                  </option>
+                </select>
+              </div>
 
           <h4 class="font-bold mt-4 mb-2">Day Plans</h4>
           <div
@@ -212,22 +228,7 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label>Accommodation:</label>
-                <select
-                  v-model="dayPlan.accommodation_id"
-                  class="border border-black h-[42px] p-[8px]"
-                >
-                  <option :value="null">Select Accommodation</option>
-                  <option
-                    v-for="acc in accommodations"
-                    :key="acc.accommodation_id"
-                    :value="acc.accommodation_id"
-                  >
-                    {{ acc.name }} ({{ acc.location }})
-                  </option>
-                </select>
-              </div>
+              
               
             </div>
           </div>
@@ -279,7 +280,7 @@ interface DayPlan {
   location: string;
   description: string;
   activities_summary?: string;
-  accommodation_id?: number | null;
+  
   night_number?: number | null;
 }
 
@@ -289,6 +290,7 @@ interface SubItinerary {
   price: number;
   special_notes?: string;
   day_plans: DayPlan[];
+  accommodation_id?: number | null;
 }
 
 interface ItineraryForm {
@@ -316,12 +318,13 @@ const form = ref<ItineraryForm>({
       duration_nights: 0,
       price: 0,
       special_notes: "",
+      accommodation_id: null,
       day_plans: [
         {
           day_number: 1,
           location: "",
           description: "",
-          accommodation_id: null,
+         
           
         },
       ],
@@ -345,12 +348,13 @@ const addSubItinerary = () => {
     duration_nights: 0,
     price: 0,
     special_notes: "",
+    accommodation_id: null,
     day_plans: [
       {
         day_number: form.value.sub_itineraries.at(-1)?.day_plans.length || 1,
         location: "",
         description: "",
-        accommodation_id: null,
+        
         
       },
     ],
@@ -364,7 +368,7 @@ const addDayPlan = (subItineraryIndex: number) => {
     day_number: dayNumber,
     location: "",
     description: "",
-    accommodation_id: null,
+    
     
   });
 };
@@ -467,12 +471,13 @@ const resetForm = () => {
         duration_nights: 0,
         price: 0,
         special_notes: "",
+        accommodation_id: null,
         day_plans: [
           {
             day_number: 1,
             location: "",
             description: "",
-            accommodation_id: null,
+           
             
           },
         ],
@@ -562,16 +567,15 @@ const submitItinerary = async () => {
 
   const subItineraryId: number = subItineraryData.sub_itinerary_id;
 
-  for (const dayPlan of subItinerary.day_plans) {
-    if (dayPlan.accommodation_id  !== null) {
-      await attachAccommodation(
-        data.itinerary.itinerary_id,
-        subItineraryId,
-        dayPlan.accommodation_id,
-        
-      );
-    }
+  
+  if (subItinerary.accommodation_id !== null && subItinerary.accommodation_id !== undefined) {
+    await attachAccommodation(
+      data.itinerary.itinerary_id,
+      subItineraryId,
+      subItinerary.accommodation_id
+    );
   }
+  
 }
     message.value = "Itinerary created successfully!";
     resetForm();

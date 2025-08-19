@@ -14,7 +14,7 @@
 
                 </div>
                 </div>
-                <div class="font-[Montserrat] pt-[10px]">
+                <div class=" pt-[10px] font-sinco">
                     <p class="text-[17px] leading-[25px]">{{ activity.description }}</p>
                     <p class="text-yellow-600 text-[17px] leading-[25px]">Difficulty: {{ activity.difficulty_level }}</p>
                 </div>

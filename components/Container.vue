@@ -10,7 +10,7 @@
         {{ title }}
       </div>
       <div
-        class=" text-[18px] font-medium font-[david-libre] leading-[22px] flex flex-col text-gray-700"
+        class=" text-[18px] font-medium  leading-[22px] flex flex-col text-gray-700 font-sinco"
       >
         <span>{{ description }}</span>
         <span>{{ desc }}</span>

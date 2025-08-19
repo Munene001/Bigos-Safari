@@ -10,6 +10,12 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily:{
+         dos: ['Dos', 'sans-serif'],
+         uno: ['Uno', 'sans-serif'],
+         tres: ['Tres', 'sans-serif'],
+         sinco: ['Sinco', 'sans-serif']
+      },
       animation:{
         'glide-in':'glideIn 2s ease-out forwards',
         'glide-out':'glideOut 2s ease-out forwards',

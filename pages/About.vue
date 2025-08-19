@@ -2,7 +2,7 @@
 
 <template>
   <div
-    class="px-[25px] py-[10px] h-[220px] justify-center text-[#242d2d] flex flex-col gap-[18px]"
+    class="px-[25px] py-[10px] h-[220px] justify-center text-[#242d2d] flex flex-col gap-[18px] font-sinco"
   >
     <div class="flex flex-row">
       <Icon name="mage:home" /><Icon name="lsicon:right-filled" /><span

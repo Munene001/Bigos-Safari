@@ -37,7 +37,7 @@
             {{ accommodation.type }}
           </div>
           <div class="hidden md:block font-[Sans-serif]">
-            {{ accommodation.location }}
+            {{ accommodation.location}}
           </div>
           <div class="hidden md:block font-[Sans-serif]">
             {{

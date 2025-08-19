@@ -13,7 +13,7 @@
       <div
         class="absolute z-10 text-white md:w-[60%] left-[5%] md:top-[20%] md:space-y-[30px] top-[100px] space-y-[20px] w-[80%] md:translate-x-0 bg-black bg-opacity-5 p-[5px]"
       >
-        <div class="hidden md:block text-white">
+        <div class="hidden md:block text-white font-tres font-semibold">
           HOME > COUNTRIES > {{ country.name }}
         </div>
         <div
@@ -22,7 +22,7 @@
           {{ country.name }}
         </div>
         <div
-          class="text-white md:text-[21px] md:leading-[30px font-[Sans-serif] text-[15px] font-medium"
+          class="text-white md:text-[21px] font-sinco md:leading-[30px font-[Sans-serif] text-[15px] font-medium"
         >
           Home to the majestic Maasai Mara and the Great Rift Valley, Kenya is a
           land of dramatic landscapes and rich wildlife, where ancient cultures
@@ -38,11 +38,11 @@
         >
           <div class="flex flex-col gap-[10px]">
             <div class="text-[28px] md:text-[32px] font-bold leading-[28px]">KENYA OVERVIEW</div>
-            <div class="hidden md:block font-medium">Kenya is where humanity began—home to some of the oldest human fossils ever discovered, offering a deep connection to our shared origins.</div>
+            <div class="hidden md:block font-medium font-sinco">Kenya is where humanity began—home to some of the oldest human fossils ever discovered, offering a deep connection to our shared origins.</div>
           </div>
           <img src="/ke.jpeg" class="height-[50px]" />
         </div>
-        <div class="text-[17px] leading-[25px]">K{{ country.overview }}</div>
+        <div class="text-[17px] leading-[25px] font-sinco">K{{ country.overview }}</div>
        
         
       </div>
@@ -84,7 +84,7 @@
     <Subc :country="country" />
     <div class="px-[10px] py-[20px] md:py-[40px] flex flex-col md:flex-row gap-[30px]">
     <!-- FAQ Accordion -->
-    <div class="md:w-[60%]">
+    <div class="md:w-[60%] font-sinco">
       <h2 class="text-[24px] md:text-[28px] font-bold mb-[20px]">FREQUENTLY ASKED QUESTIONS</h2>
       
       <div class="space-y-[10px]">

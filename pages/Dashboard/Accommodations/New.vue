@@ -303,7 +303,7 @@ const submitAccommodation = async () => {
     formData.append("name", form.value.name);
     formData.append("description", form.value.description);
     formData.append("country_id", form.value.country_id.toString());
-    formData.append("location", form.value.type);
+    formData.append("location", form.value.location);
     formData.append("type", form.value.type);
     formData.append("rating", form.value.rating.toString());
     formData.append("website_url", form.value.website_url);

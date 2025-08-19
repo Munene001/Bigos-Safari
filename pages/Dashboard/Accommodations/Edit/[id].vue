@@ -55,8 +55,8 @@
               <option value="" disabled>Select a country</option>
               <option
                 v-for="country in countries"
-                :key="country.id"
-                :value="country.id"
+                :key="country.country_id"
+                :value="country.country_id"
               >
                 {{ country.name }}
               </option>
@@ -361,7 +361,7 @@ interface Image {
 }
 
 interface Country {
-  id: number;
+  country_id: number;
   name: string;
 }
 
@@ -555,40 +555,42 @@ const validateForm = () => {
 // Submit accommodation form
 const submitAccommodation = async () => {
   submitting.value = true;
-  message.value = "";
-  formError.value = "";
-  errors.value = {};
-
   try {
     const formData = new FormData();
 
-    // Append all required fields
-    formData.append("name", form.value.name);
-    formData.append("description", form.value.description);
-    formData.append("type", form.value.type);
-    formData.append("rating", form.value.rating.toString());
-    formData.append("website_url", form.value.website_url || "");
-    formData.append("location", form.value.location);
-    formData.append("country_id", form.value.country_id.toString());
-    formData.append("features_text", featuresText.value);
+    // 1. First append ALL regular fields (non-file)
+    formData.append('name', form.value.name);
+    formData.append('description', form.value.description);
+    formData.append('location', form.value.location);
+    formData.append('type', form.value.type);
+    formData.append('website_url', form.value.website_url || '');
+    formData.append('rating', form.value.rating.toString());
+    formData.append('country_id', form.value.country_id.toString());
+    formData.append('features_text', featuresText.value);
+    
+    // 2. Then append array fields
+    imagesToDelete.value.forEach(id => {
+      formData.append('images_to_delete[]', id.toString());
+    });
 
-    // Handle images
+    // 3. Only THEN append file fields
     if (primaryImage.value) {
-      formData.append("primary_image", primaryImage.value);
+      formData.append('primary_image', primaryImage.value);
+    }
+    
+    galleryImages.value.forEach(file => {
+      formData.append('gallery_images[]', file);
+    });
+
+    // 4. Finally append any special fields
+    if (newPrimaryImageId.value) {
+      formData.append('new_primary_image_id', newPrimaryImageId.value.toString());
     }
 
-    galleryImages.value.forEach((file) => {
-      formData.append("gallery_images[]", file);
-    });
-    imagesToDelete.value.forEach((id) => {
-      formData.append("images_to_delete[]", id.toString());
-    });
-
-    if (newPrimaryImageId.value) {
-      formData.append(
-        "new_primary_image_id",
-        newPrimaryImageId.value.toString()
-      );
+    // Critical debugging - verify what's actually being sent
+    console.log('Final FormData contents:');
+    for (const [key, value] of formData.entries()) {
+      console.log(key, value);
     }
 
     const response = await axios.put(
@@ -596,52 +598,35 @@ const submitAccommodation = async () => {
       formData,
       {
         headers: {
-          "Content-Type": "multipart/form-data",
-          Accept: "application/json",
+          'Content-Type': 'multipart/form-data',
         },
       }
     );
 
-    message.value = "Accommodation updated successfully";
-
-    // Refresh the data after successful update
+    message.value = 'Accommodation updated successfully';
     await fetchAccommodation();
   } catch (err: any) {
-    console.error("Error updating accommodation:", err);
-
     if (err.response?.status === 422) {
-      // Handle Laravel validation errors
-      const responseErrors = err.response.data.errors || {};
-
-      // Map the errors to our errors object
-      for (const [field, messages] of Object.entries(responseErrors)) {
-        if (Array.isArray(messages)) {
-          errors.value[field] = messages.join(", ");
-        } else {
-          errors.value[field] = messages as string;
-        }
-      }
-
-      formError.value = "Please fix the validation errors below";
-
-      // Scroll to the first error
-      const firstErrorField = Object.keys(errors.value)[0];
-      if (firstErrorField) {
-        const element = document.getElementById(firstErrorField);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth", block: "center" });
-          element.focus();
-        }
+      errors.value = err.response.data.errors;
+      formError.value = 'Validation failed. Please check all fields.';
+      
+      // Scroll to first error
+      const firstError = Object.keys(errors.value)[0];
+      if (firstError) {
+        document.getElementById(firstError)?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
       }
     } else {
-      formError.value =
-        err.response?.data?.message ||
-        "Failed to update accommodation. Please try again.";
+      formError.value = err.response?.data?.message || 
+        'Update failed. Please try again.';
     }
   } finally {
     submitting.value = false;
   }
 };
+
 
 // Initialize component
 onMounted(async () => {

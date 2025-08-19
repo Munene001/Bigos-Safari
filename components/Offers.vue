@@ -11,7 +11,7 @@
           {{ title }}
         </div>
         <div
-          class="font-[Sans-serif] text-[17px] leading-[25px] text-[#3C3B32] md:text-[18px] md:leading-[35px]"
+          class=" text-[17px] leading-[25px] text-[#3C3B32] md:text-[18px] md:leading-[35px] font-sinco"
         >
           {{ description }}
         </div>

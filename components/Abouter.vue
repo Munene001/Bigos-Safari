@@ -6,7 +6,7 @@
       <div class=" text-[24px] font-bold leading-[26px]">
         {{ title }}
       </div>
-      <div class="font-[Sans-serif] text-[17px] leading-[25px] text-[#3C3B32]">
+      <div class=" text-[17px] leading-[25px] text-[#3C3B32] font-sinco">
         {{ description }}
       </div>
     </div>

@@ -17,7 +17,7 @@
     <div
       class="absolute z-10 text-white md:w-[60%] md:left-[5%] md:top-[20%] md:space-y-[30px] top-[120px] space-y-[40px] translate-x-1/2 w-[60%] md:translate-x-0"
     >
-      <div class="hidden md:block text-white">
+      <div class="hidden md:block text-white font-tres font-semibold">
         HOME > ACTIVITIES > {{ activity?.activity_name }}
       </div>
       <div
@@ -40,8 +40,8 @@
   <div class="px-[10px] py-[20px] flex flex-row gap-[50px]">
       <div class="md:w-[60%] flex flex-col gap-[20px]">
         <div class="text-[28px] font-bold leading-[28px]">ACTIVITY OVERVIEW</div>
-        <div class="text-[17px] leading-[25px]">{{ activity?.description }}</div>
-        <div class="text-[17px] leading-[25px]"> <b>DIFFICULTY LEVEL : </b>{{activity?.difficulty_level }}</div>
+        <div class="text-[17px] leading-[25px] font-sinco">{{ activity?.description }}</div>
+        <div class="text-[17px] leading-[25px] font-sinco"> <b>DIFFICULTY LEVEL : </b>{{activity?.difficulty_level }}</div>
         
       </div>
       <div class="hidden md:flex  w-[40%]  bg-gray-100 p-[20px] h-[200px] text-center flex-col gap-[15px]">

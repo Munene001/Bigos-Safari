@@ -14,7 +14,7 @@
         </div>
       </div>
       <div
-        class="md:text-[20px] md:leading-[28px] text-[15px] leading-[18px] text-[Montserrat] md:w-[70%]"
+        class="md:text-[20px] md:leading-[28px] text-[15px] leading-[18px] font-sinco md:w-[70%]"
       >
         From breathtaking wildlife encounters to serene coastal getaways, we
         design personalized journeys that reflect your vision. Explore a few
@@ -45,7 +45,7 @@
             </div>
           </div>
           <div
-            class="font-[Montserrat] pt-[10px] grid grid-cols-[auto_1fr] gap-[10px] items-center"
+            class="font-sinco pt-[10px] grid grid-cols-[auto_1fr] gap-[10px] items-center"
           >
             <!-- Best Season -->
             <div class="flex items-center">

@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-[#4A3620] flex flex-col py-[20px] px-[20px] text-white gap-[20px] font-[Sans-serif]  md:flex-row md:hidden rounded-t-lg">
+    <div class="bg-[#4A3620] flex flex-col py-[20px] px-[20px] font-sinco text-white gap-[20px]   md:flex-row md:hidden rounded-t-lg">
         <div class="flex flex-col gap-[5px]">
             <div class="text-[18px] font-semibold leading-[28px] mb-[5px]">Top Accomodations</div>
             <div class = "text-[16px] font-light leading-[24px] flex flex-col gap-[5px]">
@@ -52,7 +52,7 @@
 
     </div>
 
-    <div class="bg-[#4A3620]  flex-col py-[40px] px-[20px] hidden text-white gap-[20px] font-[Sans-serif]  md:flex-col md:flex rounded-t-lg">
+    <div class="bg-[#4A3620]  flex-col py-[40px] font-sinco px-[20px] hidden text-white gap-[20px]   md:flex-col md:flex rounded-t-lg">
         <div class="flex flex-row justify-evenly pb-[30px] border-b border-white ">
         <div class="flex flex-col gap-[5px]">
             <div class="text-[18px] font-semibold leading-[28px] mb-[5px]">Top Accomodations</div>
